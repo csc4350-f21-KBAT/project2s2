@@ -264,7 +264,6 @@ def search():
     Search for information of a movie through keyword.
     """
     data = get_search()
-    print(data)
     return flask.jsonify({"status": 200, "search": data})
 
 
@@ -354,6 +353,27 @@ def get_avg_rating():
         avg_rating = 0
 
     return flask.jsonify({"status": 200, "avg_rating": avg_rating})
+
+
+@app.route("/change_settings", methods=["POST"])
+def change_settings():
+    """
+    abc.
+    """
+    username = current_user.username
+    new_username = flask.request.json.get("new_username")
+    new_password = flask.request.json.get("new_password")
+
+    query_user = User.query.filter_by(username=username).first()
+    if not new_password:
+        query_user.username = new_username
+        db.session.commit()
+    else:
+        query_user.username = new_username
+        query_user.password = generate_password_hash(new_password, method="sha256")
+        db.session.commit()
+
+    return flask.jsonify({"status": 200, "change": new_username})
 
 
 app.run(
