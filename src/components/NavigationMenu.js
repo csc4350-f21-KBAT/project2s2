@@ -56,9 +56,9 @@ function NavigationMenu() {
         <ul className="nav flex-column mb-2">
           <li className="nav-item">
             <div className="nav-link">
-              <img src="https://img.icons8.com/ios/32/000000/contact-card.png" alt="" />
+              <img src="https://img.icons8.com/ios/32/000000/filter--v1.png" alt="" />
               <div>
-                <Link to="/contact">Contact</Link>
+                <Link to="/filter">Filter</Link>
               </div>
             </div>
           </li>
@@ -67,6 +67,14 @@ function NavigationMenu() {
         <hr />
 
         <ul className="nav flex-column mb-2">
+          <li className="nav-item">
+            <div className="nav-link">
+              <img src="https://img.icons8.com/ios/32/000000/contact-card.png" alt="" />
+              <div>
+                <Link to="/contact">Contact</Link>
+              </div>
+            </div>
+          </li>
           <li className="nav-item">
             <div className="nav-link">
               <img src="https://img.icons8.com/ios/32/000000/settings.png" alt="" />
