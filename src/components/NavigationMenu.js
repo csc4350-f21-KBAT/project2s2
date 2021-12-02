@@ -1,20 +1,18 @@
-/* eslint-disable no-undef */
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function NavigationMenu() {
-  const args = JSON.parse(document.getElementById('data').text);
-  const [userName, setUserName] = useState();
-  const newUsername = useLocation();
+  const [name, setName] = useState('');
 
   useEffect(() => {
-    console.log(newUsername.state);
-    if (newUsername.state) {
-      setUserName(newUsername.state);
-    } else {
-      console.log('bbbb');
-      setUserName(args.username);
-    }
+    fetch('/get_username', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }).then((response) => response.json()).then((data) => {
+      setName(data.username);
+    });
   }, []);
 
   return (
@@ -26,7 +24,7 @@ function NavigationMenu() {
               <div>
                 Welcome,
                 {' '}
-                {userName}
+                {name}
               </div>
             </div>
           </li>

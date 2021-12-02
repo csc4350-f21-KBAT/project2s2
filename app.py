@@ -355,6 +355,14 @@ def get_avg_rating():
     return flask.jsonify({"status": 200, "avg_rating": avg_rating})
 
 
+@app.route("/get_username", methods=["POST"])
+def get_username():
+    """
+    Get current username from database.
+    """
+    username = current_user.username
+    return flask.jsonify({"status": 200, "username": username})
+
 @app.route("/change_settings", methods=["POST"])
 def change_settings():
     """
