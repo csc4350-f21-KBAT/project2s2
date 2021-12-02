@@ -1,9 +1,21 @@
 /* eslint-disable no-undef */
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 function NavigationMenu() {
   const args = JSON.parse(document.getElementById('data').text);
+  const [userName, setUserName] = useState();
+  const newUsername = useLocation();
+
+  useEffect(() => {
+    console.log(newUsername.state);
+    if (newUsername.state) {
+      setUserName(newUsername.state);
+    } else {
+      console.log('bbbb');
+      setUserName(args.username);
+    }
+  }, []);
 
   return (
     <nav className="col-md-2 d-none d-md-block bg-light sidebar">
@@ -14,7 +26,7 @@ function NavigationMenu() {
               <div>
                 Welcome,
                 {' '}
-                {args.username}
+                {userName}
               </div>
             </div>
           </li>
