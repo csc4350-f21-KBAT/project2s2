@@ -69,6 +69,14 @@ function NavigationMenu() {
         <ul className="nav flex-column mb-2">
           <li className="nav-item">
             <div className="nav-link">
+              <img src="https://img.icons8.com/material-outlined/32/000000/like--v1.png" alt="" />
+              <div>
+                <Link to="/favorite">Favorite Movies</Link>
+              </div>
+            </div>
+          </li>
+          <li className="nav-item">
+            <div className="nav-link">
               <img src="https://img.icons8.com/ios/32/000000/contact-card.png" alt="" />
               <div>
                 <Link to="/contact">Contact</Link>

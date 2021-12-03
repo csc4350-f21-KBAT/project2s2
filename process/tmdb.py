@@ -88,14 +88,16 @@ def get_detail_movie(movie_id):
 
     poster_path = "".join([URL_IMAGE, tmdb_response_json["poster_path"]])
     title = tmdb_response_json["title"]
+    vote_average = tmdb_response_json["vote_average"]
     release_date = tmdb_response_json["release_date"]
+    popularity = tmdb_response_json["popularity"]
     runtime = tmdb_response_json["runtime"]
     for i in tmdb_response_json["genres"]:
         genres_temp.append(i["name"])
     genres = ", ".join(genres_temp)
     overview = tmdb_response_json["overview"]
 
-    return (poster_path, title, release_date, runtime, genres, overview)
+    return (poster_path, title, vote_average, release_date, popularity, runtime, genres, overview)
 
 
 def get_search_movie(movie_name):

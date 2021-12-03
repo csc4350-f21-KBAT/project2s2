@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import React, { useState, useEffect } from 'react';
 import '../style/Settings.css';
 import ToolBar from './Toolbar';
@@ -43,7 +44,7 @@ function Settings() {
   };
 
   return (
-    <div className="TopRated">
+    <div className="Settings">
       <div className="container p-0">
         <ToolBar />
         <div className="container-fluid">
