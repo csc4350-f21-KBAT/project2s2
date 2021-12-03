@@ -142,3 +142,45 @@ def get_search_movie(movie_name):
         release_date,
         popularity,
     )
+
+
+def get_filter_movie(movie_genre):
+    """
+    Filter for movies that are related to the genres the user selects for from TheDBMovie.
+    """
+    tmdb_response = requests.get(
+        "https://api.themoviedb.org/3/discover/movie?api_key="
+        + os.getenv("API_KEY")
+        + "&language=en-US&sort_by=popularity.desc&include_adult=false&include_video="
+        + "false&page=1&with_genres="
+        + movie_genre,
+    )
+    tmdb_response_json = tmdb_response.json()
+
+    id_movie = []
+    poster_path = []
+    title = []
+    vote_average = []
+    release_date = []
+    popularity = []
+
+    for i in range(len(tmdb_response_json["results"])):
+        id_movie.append(tmdb_response_json["results"][i]["id"])
+        if tmdb_response_json["results"][i]["poster_path"] is None:
+            poster_path.append(URL_NO_IMAGE)
+        else:
+            poster_path.append(
+                "".join([URL_IMAGE, tmdb_response_json["results"][i]["poster_path"]])
+            )
+        title.append(tmdb_response_json["results"][i]["title"])
+        vote_average.append(tmdb_response_json["results"][i]["vote_average"])
+        release_date.append(tmdb_response_json["results"][i]["release_date"])
+        popularity.append(tmdb_response_json["results"][i]["popularity"])
+    return (
+        id_movie,
+        poster_path,
+        title,
+        vote_average,
+        release_date,
+        popularity,
+    )

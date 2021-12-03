@@ -20,6 +20,7 @@ from flask_sqlalchemy import SQLAlchemy
 from tmdb import get_popular_movie, get_top_rated_movie
 from search import get_search
 from detail import get_detail
+from filter import get_filter
 
 from dotenv import load_dotenv, find_dotenv
 
@@ -434,13 +435,13 @@ def get_avg_rating():
     return flask.jsonify({"status": 200, "avg_rating": avg_rating})
 
 
-@app.route("/get_username", methods=["POST"])
-def get_username():
+@app.route("/filter", methods=["POST"])
+def filter():
     """
-    Get current username from database.
+    abc.
     """
-    username = current_user.username
-    return flask.jsonify({"status": 200, "username": username})
+    data = get_filter()
+    return flask.jsonify({"status": 200, "filter": data})
 
 
 @app.route("/all_favorite", methods=["POST"])
@@ -483,6 +484,15 @@ def get_all_favorite():
     return flask.jsonify({"status": 200, "all_favorite": data})
 
 
+@app.route("/get_username", methods=["POST"])
+def get_username():
+    """
+    Get current username from database.
+    """
+    username = current_user.username
+    return flask.jsonify({"status": 200, "username": username})
+
+
 @app.route("/change_settings", methods=["POST"])
 def change_settings():
     username = current_user.username
@@ -503,5 +513,5 @@ def change_settings():
 
 app.run(
     host=os.getenv("IP", "0.0.0.0"),
-    port=int(os.getenv("PORT", 8081)),
+    port=int(os.getenv("PORT", 8082)),
 )
