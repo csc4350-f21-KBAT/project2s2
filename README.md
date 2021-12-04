@@ -104,8 +104,8 @@ http://mighty-shelf-43642.herokuapp.com/
 - Manuevering through the API and having it cater to our needs was difficult. For example, if a user on our website made an review, it would not count towards the ratings that was represented on our website. So we decided to keep the rating that the API gave and just have a seperate rating for our app.  
 
 # b. What are known problems (still existing), if any, with your project?  
-We really have trouble with mock and unmock test.  
-I have solved all current problems in Sprint1 based on Proposal. Coming to Sprint2, we will continue to upgrade our website - adding new functions and adding css to make the site better.  
+- We really have trouble with mock and unmock test.    
+- I have solved all current problems in Sprint1 based on Proposal. Coming to Sprint2, we will continue to upgrade our website - adding new functions and adding css to make the site better.  
 
 # b. What are known problems (still existing), if any, with your project? (Sprint 2)
 - Mock tests and Unmocked tests were an issue because it was hard to create the test and giving us the desired output. Especially when getting data from the API, it is hard to get what you want specifically because it just gives a bunch of data in the order they want it and the amount of data can very for different queries. We would have to develop different tests for each scenario.  
