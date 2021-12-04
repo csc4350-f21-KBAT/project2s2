@@ -28,7 +28,7 @@ Have you ever had trouble finding a TV show or movie to watch or just don't have
 - TheMovieDB detail movie API
 
 # Heroku
-https://thawing-plains-43721.herokuapp.com/
+http://mighty-shelf-43642.herokuapp.com/
 
 # Clones the repository
 - In Visual Studio Code, creating a new directory where clone the code
