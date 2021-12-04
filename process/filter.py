@@ -9,7 +9,7 @@ from tmdb import get_filter_movie
 
 def get_filter():
     """
-    abc.
+    Based on the genre of the movie to get all the latest movies of that genre.
     """
     movie_genre = flask.request.json.get("movie_genre")
     (
