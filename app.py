@@ -5,17 +5,9 @@ Provides all the functions such as creating a model to store data in the databas
 sign up, sign in, sign out, load popular movies / top rated movies, search, detail,
 store comment, load comments, calulate avg rating according to each user.
 """
-from pathlib import Path
-from cachecontrol import CacheControl
 
 from flask import Flask, session, abort, redirect, request
-from flask_restful import reqparse, abort, Api, Resource
-from flask_cors import CORS
 
-# Google Authentication
-from google_auth_oauthlib.flow import Flow
-from google.auth.transport.requests import Request
-from google.oauth2.id_token import verify_oauth2_token
 import os
 import json
 import sys
@@ -59,27 +51,10 @@ app.config["SQLALCHEMY_DATABASE_URI"] = db_url
 # Gets rid of a warning
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.secret_key = b"I am a secret key!"  # don't defraud my app ok?
-cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
-api = Api(app)
-
-parser = reqparse.RequestParser()
-parser.add_argument("task")
 
 os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
 
 GOOGLE_CLIENT_ID = os.getenv("GOOGLE_CLIENT_ID")
-client_secrets_file = os.path.join(Path(__file__).parent, "clientSecrets.json")
-
-flow = Flow.from_client_secrets_file(
-    client_secrets_file=client_secrets_file,
-    redirect_uri="http://127.0.0.1:8081/authorize",
-    scopes=[
-        "https://www.googleapis.com/auth/userinfo.profile",
-        "https://www.googleapis.com/auth/userinfo.email",
-        "openid",
-    ],
-)
-
 
 ##### MODELS #####
 db = SQLAlchemy(app)
@@ -217,7 +192,7 @@ def logout():
     """
     Log out of the current account and return to the login page.
     """
-    session.clear()
+
     logout_user()
     return flask.redirect(flask.url_for("login"))
 
@@ -284,95 +259,16 @@ Function to make sure Google Account is Signed in at all times
 """
 
 
-def requireLogin(function):
-    def wrapper(*args, **kwargs):
-        if "google_id" not in session:
-            return abort(401)
-        else:
-            return function()
-
-    return wrapper
-
-
 """
 Function to direct you to the personalized sign in to link your Google Account
 """
-
-
-@app.route("/login/google")
-def login_google():
-    authorization_url, state = flow.authorization_url()
-    session["state"] = state
-    return redirect(authorization_url)
 
 
 """
 Function to authorize the account credentials and take the user info (Name and Email) from the user's Google Account
 """
 
-
-@app.route("/authorize")
-def callback():
-    flow.fetch_token(authorization_response=request.url)
-
-    if not session["state"] == request.args["state"]:
-        abort(500)
-
-    credentials = flow.credentials
-    requestSession = requests.session()
-    cachedSession = CacheControl(requestSession)
-    tokenRequest = Request(session=cachedSession)
-
-    idInfo = verify_oauth2_token(
-        id_token=credentials._id_token, request=tokenRequest, audience=GOOGLE_CLIENT_ID
-    )
-
-    session["google_id"] = idInfo.get("sub")
-    session["name"] = idInfo.get("name")
-    return redirect("/protected")
-
-
 "Testing / Debuggin Purposes"
-
-
-@app.route("/protected")
-@requireLogin
-def protected():
-    return "Protected <a href='/logout'>logout</a><p>Hello, {}! You're logged in! Email: {}</p>"
-
-
-class Api_Res(Resource):
-    @requireLogin
-    def get(self):
-        return {"Dummy Data": "IAMNOTADUMMY"}
-
-
-api.add_resource(Api_Res, "/api")
-
-
-@app.route("/login/google/authenticate", methods=["POST"])
-def login_google_authenticate():
-
-    email = flask.request.json.get("email")
-    first_name = flask.request.json.get("fName")
-
-    # check if user in database via unique email
-    user = User.query.filter_by(email=email).first()
-    if user:
-        if user.username != first_name:
-            user.username = first_name
-            db.session.commit()
-    else:
-        user = User(email=email, username=first_name)
-        db.session.add(user)
-        db.session.commit()
-    data = {
-        "username": user.username,
-        "userId": user.id,
-    }
-    # print(id_token)
-    # print(response)
-    return flask.jsonify(data)
 
 
 @app.errorhandler(404)
@@ -400,13 +296,6 @@ def logingooglefunc():
 
 """ Generates Authorization URL after account information is verified
 """
-
-
-@app.route("/loginauth")
-def loginauth():
-    authorization_url, state = flow.authorization_url()
-    session["state"] = state
-    return redirect(authorization_url)
 
 
 @app.route("/detail", methods=["POST"])
