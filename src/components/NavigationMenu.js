@@ -49,16 +49,11 @@ function NavigationMenu() {
               </div>
             </div>
           </li>
-        </ul>
-
-        <hr />
-
-        <ul className="nav flex-column mb-2">
           <li className="nav-item">
             <div className="nav-link">
               <img src="https://img.icons8.com/ios/32/000000/filter--v1.png" alt="" />
               <div>
-                <Link to="/filter">Filter</Link>
+                <Link to="/filter">Filter Movies</Link>
               </div>
             </div>
           </li>

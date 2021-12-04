@@ -181,10 +181,10 @@ function Detail() {
                 <ReactStars count={5} onChange={ratingChanged} size={24} activeColor="#ffd700" />
                 <div>Comment:</div>
                 <div className="textarea">
-                  <textarea cols="110" rows="3" ref={textInput} placeholder="Add comment..." />
+                  <textarea cols="110" rows="5" ref={textInput} placeholder="Add comment..." />
                 </div>
                 <div className="btn">
-                  <button className="addComment" onClick={addComment} type="submit">Post</button>
+                  <button className="btn btn-primary" onClick={addComment} type="submit">Post</button>
                 </div>
               </div>
 
