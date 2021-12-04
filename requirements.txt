@@ -11,7 +11,5 @@ flask_restful
 cachecontrol
 pyjwt
 pathlib
-os
 json
-sys
 requests
