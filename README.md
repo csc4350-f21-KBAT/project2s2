@@ -109,8 +109,7 @@ http://mighty-shelf-43642.herokuapp.com/
 
 # b. What are known problems (still existing), if any, with your project? (Sprint 2)
 - Mock tests and Unmocked tests were an issue because it was hard to create the test and giving us the desired output. Especially when getting data from the API, it is hard to get what you want specifically because it just gives a bunch of data in the order they want it and the amount of data can very for different queries. We would have to develop different tests for each scenario.  
-- It was hard to improve the app since most of the functions were developed and the styling throughout the App was uniform.
-- I have solved all current problems in Sprint 1 based on Proposal. Coming to Sprint2, we will continue to upgrade our website - adding new functions and adding css to make the site better.  
+- It was hard to improve the app since most of the functions were developed and the styling throughout the App was uniform. 
 
 # Images
 ![Welcome Page](https://raw.githubusercontent.com/csc4350-f21-KBAT/project2s2/Google-Sign-In/imgs/Welcome%20Page.png)
