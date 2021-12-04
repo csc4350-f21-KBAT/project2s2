@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../style/bootstrap.min.css';

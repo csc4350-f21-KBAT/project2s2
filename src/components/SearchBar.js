@@ -1,4 +1,4 @@
-/* eslint-disable no-undef, no-alert */
+/* eslint-disable no-alert */
 import React, { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
