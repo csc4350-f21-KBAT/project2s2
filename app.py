@@ -1,4 +1,4 @@
-# pylint: disable = C0413, E0401, E1101, W1508
+# pylint: disable = C0413, C0103, C0411, E0401, E1101, W1508
 
 """
 Provides all the functions such as creating a model to store data in the database,
@@ -295,13 +295,15 @@ def detail():
 
 @app.route("/check_liked", methods=["POST"])
 def check_liked():
+    """
+    Check if the user has liked the movie.
+    """
     username = current_user.username
     movie_id = flask.request.json.get("movie_id")
 
     query_favorite = Favorite.query.filter_by(username=username).all()
 
     movie_ids = []
-    
     for item in query_favorite:
         movie_ids.append(item.movie_id)
 
@@ -312,6 +314,9 @@ def check_liked():
 
 @app.route("/liked", methods=["POST"])
 def get_liked():
+    """
+    Handling function when user press like movie.
+    """
     username = current_user.username
     movie_id = flask.request.json.get("movie_id")
     poster_path = flask.request.json.get("poster_path")
@@ -338,6 +343,9 @@ def get_liked():
 
 @app.route("/unliked", methods=["POST"])
 def get_unliked():
+    """
+    Handling function when user press unlike movie.
+    """
     username = current_user.username
     movie_id = flask.request.json.get("movie_id")
 
@@ -436,9 +444,9 @@ def get_avg_rating():
 
 
 @app.route("/filter", methods=["POST"])
-def filter():
+def filter_movie():
     """
-    abc.
+    Filter movies by genre.
     """
     data = get_filter()
     return flask.jsonify({"status": 200, "filter": data})
@@ -446,6 +454,9 @@ def filter():
 
 @app.route("/all_favorite", methods=["POST"])
 def get_all_favorite():
+    """
+    Load all the movies that the user has liked.
+    """
     username = current_user.username
 
     query_favorite = Favorite.query.filter_by(username=username).all()
@@ -495,6 +506,9 @@ def get_username():
 
 @app.route("/change_settings", methods=["POST"])
 def change_settings():
+    """
+    Update user information such as username, password.
+    """
     username = current_user.username
     new_username = flask.request.json.get("new_username")
     new_password = flask.request.json.get("new_password")
@@ -513,5 +527,5 @@ def change_settings():
 
 app.run(
     host=os.getenv("IP", "0.0.0.0"),
-    port=int(os.getenv("PORT", 8082)),
+    port=int(os.getenv("PORT", 8081)),
 )

@@ -1,4 +1,4 @@
-This is project group (Sprint1) of Software Engineering.
+This is project group (Sprint2) of Software Engineering.
 
 # Entertainment Finder
 Have you ever had trouble finding a TV show or movie to watch or just don't have the time to go through the reviews for everything? Here lies our repository dedicated to helping you find something right now :)
@@ -26,9 +26,10 @@ Have you ever had trouble finding a TV show or movie to watch or just don't have
 - TheMovieDB top rated movie API
 - TheMovieDB search movie API
 - TheMovieDB detail movie API
+- TheMovieDB discover movie API
 
 # Heroku
-https://thawing-plains-43721.herokuapp.com/
+http://mighty-shelf-43642.herokuapp.com/login
 
 # Clones the repository
 - In Visual Studio Code, creating a new directory where clone the code
@@ -46,6 +47,7 @@ https://thawing-plains-43721.herokuapp.com/
     - npm install
     - pip install -r requirements.txt
     - npm install react-rating-stars-component
+    - npm i emailjs-com
 - Create and set up enviroment .env file:
     - In TheMovieDB:
         - Go to https://www.themoviedb.org/
@@ -63,6 +65,15 @@ https://thawing-plains-43721.herokuapp.com/
         - heroku config
         - Look at DATABASE_URL='value-in-here'
         - Copy value-in-here and paste to .env file
+    - In EmailJS:
+        - Go to https://www.emailjs.com/
+        - Log In/Sign up your account
+        - Click "Email Services", choose "Gmail"
+        - Copy Service ID
+        - Click "Email Templates", choose "edit", edit variables to match variables in ReactJS
+        - Copy Template ID
+        - Click "Integration", look at User ID
+        - Paste Service ID, Template ID and User ID to .env file
 
 # Run Application
 1. Run command in terminal (in your project directory): `npm run build`. This will update anything related to your `App.js` file (so `public/index.html`, any CSS you're pulling in, etc).
@@ -76,13 +87,13 @@ https://thawing-plains-43721.herokuapp.com/
 4. Setup variables environment: go to Settings tab at Heroku > Reveal Config Vars
 
 # a. What are at least 3 technical issues you encountered with your project? How did you fix them?
-- We don't know how to navigate between pages. After doing some research, we use { BrowserRouter, Routes, Route } from "react-router-dom" then use <Link> tag to move from page to page.
-- I have created an additional images folder to contain the necessary icons for the web. When using the <img> tag in the html, the icon in the images folder cannot be loaded. I had to fix it by directly loading the image from another website via the url link.
-- After clicking on the detail of each movie, we don't know how to load details for each movie. We used useEffect to load the data for the movie details, all the reviews for that movie and the rating average.
+- When doing contact function, we don't know how to connect with Gmail. When we research, we already know how to use EmailJS to connect between our app and Gmail.
+- When doing setting function, we change the user's name, it doesn't automatically update immediately. Then, we have to get username from database and pass through userEffect of Setting Page.
+- When doing favorite function, we don't know how to save it as an array in a new page. Finally, we saved that array to the database, and when we went to the Favorite Movie page, we loaded all our favorite movies from the database.
 
 # b. What are known problems (still existing), if any, with your project?
 - We really have trouble with mock and unmock test.
-- I have solved all current problems in Sprint1 based on Proposal. Coming to Sprint2, we will continue to upgrade our website - adding new functions and adding css to make the site better.
+- I have solved all current problems in Sprint2 based on Proposal. Our team has completed all the functions stated in the proposal.
 
 # Images
 ![Login Page](https://github.com/csc4350-f21-KBAT/project2/blob/Kash/imgs/Sign%20Up.png)
