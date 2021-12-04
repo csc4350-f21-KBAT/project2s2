@@ -1,4 +1,4 @@
-This is project group (Sprint1) of Software Engineering.
+This is Group Project (KBAT) (Sprint 2) for Software Engineering Professor John Martin Section 04.
 
 # Entertainment Finder
 Have you ever had trouble finding a TV show or movie to watch or just don't have the time to go through the reviews for everything? Here lies our repository dedicated to helping you find something right now :)
